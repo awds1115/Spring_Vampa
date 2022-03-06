@@ -1,6 +1,9 @@
 package com.board;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
+import org.junit.platform.commons.util.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -81,6 +84,16 @@ class MapperTests {
 			} catch (JsonProcessingException e) {
 				e.printStackTrace();
 			}
+		}
+	}
+	@Test
+	public void testMultipleInsert() {
+		for (int i = 2; i <= 50; i++) {
+			BoardDTO params = new BoardDTO();
+			params.setTitle(i + "번 게시글 제목");
+			params.setContent(i + "번 게시글 내용");
+			params.setWriter(i + "번 게시글 작성자");
+			boardMapper.insertBoard(params);
 		}
 	}
 }
